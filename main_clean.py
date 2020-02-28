@@ -157,7 +157,6 @@ def train(train_dataloader, val_dataloader, fold):
     optimizer = optim.Adam(model.parameters(),lr = config.lr,amsgrad=True,weight_decay=config.weight_decay)
     #criterion = nn.CrossEntropyLoss().cuda()
 
-    os.environ["CUDA_VISIBLE_DEVICES"]='0'
     model.cuda()
 
     log = Logger()
@@ -256,36 +255,25 @@ def train(train_dataloader, val_dataloader, fold):
 
 #6. more details to build main function    
 def main():
-    fold = 'focalloss'
+    #fold = 'focalloss_650'
+    fold = 'bcnn'
     check_path(fold)
     
+    os.environ["CUDA_VISIBLE_DEVICES"]='0,1'
     train_dataloader, val_dataloader, test_dataloader = prepare_data()
     print('done')
     train(train_dataloader, val_dataloader, fold)
-    os.environ["CUDA_VISIBLE_DEVICES"]='0'
 
     model = get_net()
     model.cuda()
-
+    from torchsummary import summary
+    summary(model, (3, 448, 448))
     best_model = torch.load(config.best_models + os.sep+config.model_name+os.sep+ str(fold) +os.sep+ 'model_best.pth.tar')
     model.load_state_dict(best_model["state_dict"])
     test(test_dataloader,model,fold)
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -3,7 +3,7 @@ class DefaultConfigs(object):
     train_data = "data/train/"
     test_data = "data/test/images/"
     val_data = "no"
-    model_name = "resnet50"
+    model_name = "vgg"
     weights = "./checkpoints/"
     best_models = weights + "best_model/"
     submit = "./submit/"
@@ -17,8 +17,8 @@ class DefaultConfigs(object):
     #3.numeric parameters
     epochs = 40
     batch_size = 8
-    img_height = 450 # 650
-    img_weight = 450 # 650
+    img_height = 448 #650 #450 # 650
+    img_weight = 448 #650 #450 # 650
     num_classes = 59
     seed = 888
     lr = 1e-4
