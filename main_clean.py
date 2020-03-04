@@ -215,7 +215,7 @@ def train(train_dataloader, val_dataloader, fold):
             loss.backward()
             optimizer.step()
             lr = get_learning_rate(optimizer)
-            print('\r',end='',flush=True)
+            print('\r', end='', flush=True)
             print('%0.4f %5.1f %6.1f        | %0.3f  %0.3f  %0.3f         | %0.3f  %0.3f  %0.3f         |         %s         | %s' % (\
                          lr, iter/len(train_dataloader) + epoch, epoch,
                          valid_loss[0], valid_loss[1], valid_loss[2],
@@ -256,10 +256,10 @@ def train(train_dataloader, val_dataloader, fold):
 #6. more details to build main function    
 def main():
     #fold = 'focalloss_650'
-    fold = 'bcnn'
+    fold = 'unet-se'
     check_path(fold)
     
-    os.environ["CUDA_VISIBLE_DEVICES"]='0,1'
+    os.environ["CUDA_VISIBLE_DEVICES"]='2, 3'
     train_dataloader, val_dataloader, test_dataloader = prepare_data()
     print('done')
     train(train_dataloader, val_dataloader, fold)
