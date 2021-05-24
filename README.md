@@ -1,4 +1,4 @@
-### This is one topic of Ai challeger 2018.
+### This is one topic of AI Challeger 2018.
 I took it as an example for my Fine-Grained Image Classification study, based on the baseline which is made by spytensor(https://github.com/spytensor/plants_disease_detection).
 Again thanks to the spytensor for opening source generously.
 
